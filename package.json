@@ -1,0 +1,26 @@
+{
+  "name": "github-login-bdd",
+  "version": "1.0.0",
+  "description": "Test BDD (Cucumber + Playwright) de la connexion à un compte GitHub, avec CI GitHub Actions",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:unit && npm run test:bdd",
+    "test:unit": "vitest run --coverage",
+    "test:bdd": "cucumber-js",
+    "test:mutation": "stryker run",
+    "test:reel": "cucumber-js --profile reel",
+    "navigateurs": "playwright install chromium"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "13.3.0",
+    "@playwright/test": "1.56.0",
+    "@stryker-mutator/core": "^10.1.1",
+    "@stryker-mutator/vitest-runner": "^10.1.1",
+    "@vitest/coverage-v8": "^5.1.0",
+    "playwright": "1.56.0",
+    "vitest": "^5.1.0"
+  }
+}

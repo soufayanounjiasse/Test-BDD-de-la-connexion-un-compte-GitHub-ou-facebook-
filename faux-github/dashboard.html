@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>GitHub (faux site de test)</title>
+  <meta name="user-login" content="">
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; }
+    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #d0d7de; padding-bottom: .75rem; }
+    button { padding: .35rem .8rem; border: 1px solid #d0d7de; border-radius: 6px; background: #f6f8fa; cursor: pointer; }
+    .note { margin-top: 1rem; font-size: .75rem; color: #6e7781; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>GitHub</strong>
+    <span>Signed in as <strong id="nom-utilisateur"></strong>
+      <button type="button" id="deconnexion">Sign out</button></span>
+  </header>
+  <h1>Dashboard</h1>
+  <p class="note">Faux site de connexion utilisé uniquement par les tests.</p>
+  <script>
+    const utilisateur = sessionStorage.getItem('faux-github-user');
+    if (!utilisateur) {
+      location.href = '/login';          // page protégée : il faut être connecté
+    } else {
+      document.querySelector('meta[name="user-login"]').setAttribute('content', utilisateur);
+      document.getElementById('nom-utilisateur').textContent = utilisateur;
+      document.getElementById('deconnexion').addEventListener('click', () => {
+        sessionStorage.removeItem('faux-github-user');
+        location.href = '/login';
+      });
+    }
+  </script>
+</body>
+</html>
